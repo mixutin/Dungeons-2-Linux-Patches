@@ -15,17 +15,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install MinGW-w64
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y gcc-mingw-w64-x86-64-posix
+      - name: Set up Zig
+        uses: mlugg/setup-zig@v2
+        with:
+          version: 0.17.0
 
       - name: Build DLL and tests
         run: |
           mkdir -p dist
-          x86_64-w64-mingw32-gcc-posix -shared -O2 -Wall -Wextra             -o dist/xgameruntime.dll src/xgameruntime.c
-          x86_64-w64-mingw32-gcc-posix -O2 -Wall -Wextra             -o dist/test_xgr.exe tests/test_xgr.c
-          x86_64-w64-mingw32-gcc-posix -O2 -Wall -Wextra             -o dist/test_queue_lifetime.exe tests/test_queue_lifetime.c
+          zig cc -target x86_64-windows-gnu -shared -O2 -Wall -Wextra             -o dist/xgameruntime.dll src/xgameruntime.c
+          zig cc -target x86_64-windows-gnu -O2 -Wall -Wextra             -o dist/test_xgr.exe tests/test_xgr.c
+          zig cc -target x86_64-windows-gnu -O2 -Wall -Wextra             -o dist/test_queue_lifetime.exe tests/test_queue_lifetime.c
           (cd dist && sha256sum xgameruntime.dll > SHA256SUMS.txt)
 
       - name: Upload build
