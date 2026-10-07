@@ -1,0 +1,12 @@
+*.dll
+*.exe
+*.pdb
+*.log
+tokens.txt
+login-code.txt
+login-error.txt
+dist/
+build/
+.DS_Store
+
+.test-runtime/

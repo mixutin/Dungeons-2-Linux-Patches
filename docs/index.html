@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Minecraft Dungeons II Linux Fix — Proton xgameruntime Patch 1.1.2.0</title>
+  <meta name="description" content="Minecraft Dungeons II Linux and Proton fix for Steam App 1912410. Patches xgameruntime.dll async queue crashes, Microsoft auth timeouts, Flatpak Steam paths and related stale UI/input symptoms on version 1.1.2.0.">
+  <meta name="keywords" content="Minecraft Dungeons II Linux fix, Minecraft Dungeons 2 Linux, Proton fix, Steam Deck, xgameruntime.dll, EXCEPTION_ACCESS_VIOLATION, Steam 1912410, Flatpak Steam">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://mixutin.github.io/Dungeons-2-Linux-Patches/">
+  <meta property="og:title" content="Minecraft Dungeons II Linux / Proton Fix">
+  <meta property="og:description" content="Community patch for xgameruntime.dll async queue crashes and Flatpak Steam authentication issues on Minecraft Dungeons II 1.1.2.0.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mixutin.github.io/Dungeons-2-Linux-Patches/">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"SoftwareApplication",
+    "name":"Dungeons 2 Linux Patches",
+    "applicationCategory":"UtilitiesApplication",
+    "operatingSystem":"Linux, SteamOS",
+    "softwareVersion":"1.1.2.0-linux-fix.1",
+    "description":"Unofficial Minecraft Dungeons II Linux/Proton compatibility patch for xgameruntime.dll async queue crashes and Flatpak Steam authentication.",
+    "url":"https://mixutin.github.io/Dungeons-2-Linux-Patches/",
+    "downloadUrl":"https://github.com/mixutin/Dungeons-2-Linux-Patches/releases/latest",
+    "isAccessibleForFree":true,
+    "license":"https://opensource.org/license/mit"
+  }
+  </script>
+  <style>
+    :root{color-scheme:dark;--bg:#0b0f14;--panel:#121923;--text:#edf2f7;--muted:#9fb0c2;--accent:#7ee787;--line:#273244}
+    *{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#0b0f14,#0d131c);color:var(--text);font:16px/1.6 system-ui,-apple-system,Segoe UI,sans-serif}
+    main{max-width:980px;margin:auto;padding:64px 24px}.hero{padding:42px;border:1px solid var(--line);background:var(--panel);border-radius:22px}
+    h1{font-size:clamp(2.3rem,6vw,4.5rem);line-height:1.02;margin:0 0 18px}h2{margin-top:48px}p{color:var(--muted)}strong,code{color:var(--text)}
+    .pill{display:inline-block;padding:6px 11px;border:1px solid var(--line);border-radius:999px;margin:4px 4px 4px 0;color:var(--accent)}
+    .cta{display:inline-block;margin-top:18px;padding:12px 18px;border-radius:10px;background:var(--accent);color:#07110a;text-decoration:none;font-weight:700}
+    pre{overflow:auto;background:#090d12;border:1px solid var(--line);padding:16px;border-radius:12px}a{color:#8ab4ff}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+    .card{border:1px solid var(--line);background:var(--panel);padding:20px;border-radius:14px}.card p{margin-bottom:0}
+  </style>
+</head>
+<body>
+<main>
+  <section class="hero">
+    <span class="pill">Minecraft Dungeons II</span>
+    <span class="pill">Linux / Proton</span>
+    <span class="pill">Game 1.1.2.0</span>
+    <h1>Dungeons 2 Linux Patches</h1>
+    <p>Unofficial Linux compatibility fixes for <strong>Minecraft Dungeons II</strong> on Steam, Proton, SteamOS and Flatpak Steam. The first release fixes a reproducible <code>xgameruntime.dll</code> async task-queue crash and the four-minute Microsoft authentication failure path that can leave stale UI/input state before crashing.</p>
+    <a class="cta" href="https://github.com/mixutin/Dungeons-2-Linux-Patches/releases/latest">Download latest release</a>
+  </section>
+
+  <h2>What it fixes</h2>
+  <div class="grid">
+    <div class="card"><strong>xgameruntime crash</strong><p>Prevents an async completion from dereferencing a task queue that the game has already closed.</p></div>
+    <div class="card"><strong>Microsoft auth timeout</strong><p>Removes the blocking ~240 second authentication path and launches sign-in safely in the background.</p></div>
+    <div class="card"><strong>Flatpak Steam</strong><p>Uses <code>XDG_DATA_HOME</code> and stages the helper in a path visible to the Steam sandbox.</p></div>
+    <div class="card"><strong>Stale UI/input symptoms</strong><p>Addresses the runtime failure observed alongside stuck interaction prompts, cursor fallback and multiplayer state oddities.</p></div>
+  </div>
+
+  <h2>Install</h2>
+  <p>Download the release ZIP, extract it, close the game, then run:</p>
+  <pre><code>chmod +x install.sh xauth.py
+./install.sh</code></pre>
+  <p>Set this Steam launch option:</p>
+  <pre><code>WINEDLLOVERRIDES="xgameruntime=n" %command%</code></pre>
+
+  <h2>Target</h2>
+  <p>Current target is <strong>Minecraft Dungeons II 1.1.2.0</strong>, Steam App ID <strong>1912410</strong>, published as a hotfix on October 7, 2026. This is a community project and is not affiliated with Mojang, Microsoft, Xbox Game Studios, Valve or CodeWeavers.</p>
+
+  <h2>Source, tests and issue reports</h2>
+  <p>The full source, MIT license, regression tests, GitHub Actions build and troubleshooting guide are in the repository.</p>
+  <p><a href="https://github.com/mixutin/Dungeons-2-Linux-Patches">Open the GitHub repository</a> · <a href="https://github.com/mixutin/Dungeons-2-Linux-Patches/issues">Report a Linux/Proton issue</a></p>
+</main>
+</body>
+</html>

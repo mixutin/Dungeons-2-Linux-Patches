@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mixutin.github.io/Dungeons-2-Linux-Patches/sitemap.xml
